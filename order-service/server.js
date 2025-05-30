@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const orderRoutes = require('./routes/orderRoutes');
+const { connectRabbitMQ } = require('./services/rabbitmqPublisher');
 
 dotenv.config();
 const app = express();
@@ -40,6 +41,8 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/sinaing_exp
 })
 .then(() => console.log('✅ MongoDB connected successfully'))
 .catch(err => console.error('❌ MongoDB connection error:', err));
+
+connectRabbitMQ();
 
 const PORT = process.env.PORT || 5003;
 app.listen(PORT, () => {

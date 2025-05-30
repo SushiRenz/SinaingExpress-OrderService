@@ -26,4 +26,4 @@ async function publishOrderPlaced(order) {
   }
 }
 
-module.exports = { publishOrderPlaced };
+module.exports = { publishOrderPlaced, connectRabbitMQ };
